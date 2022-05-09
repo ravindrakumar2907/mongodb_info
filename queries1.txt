@@ -1,0 +1,100 @@
+select * from api_users;
+db.subscribers.find().pretty()
+ 
+
+select * from api_users limit 2;
+db.subscribers.find().limit(1).pretty()
+
+
+select api_username, company_id from api_users  order by api_username  ASC;
+db.subscribers.find().sort({_id:-1}).limit(1).pretty()
+
+
+SELECT DISTINCT Country FROM Customers;
+db.subscribers.distinct("mdn")
+
+
+db.subscribers.distinct("mdn").length
+
+SELECT DISTICT count(Country) FROM Customers;
+
+
+db.subscribers.find({}, {mdn: 1, companyId:1}).limit(2).pretty()
+db.subscribers.find({}, {mdn: 1, companyId:1, _id:0}).limit(2).pretty()
+select api_username, company_id from api_users;
+
+
+db.subscribers.find().count()
+SELECT count(Country) FROM Customers;
+
+
+SELECT district from dist_table where Country="INDIA" and state="MH";
+db.subscribers.find({mdn: NumberLong(9561120895), companyId: NumberLong(1124)}).pretty()
+
+
+## Insert
+db.subscribers.insert(
+{
+	"_class" : "com.zumigo.mongo.dto.SubInfo",
+	"subscriberId" : 406,
+	"countryCode" : 91,
+	"mdn" : 1234567890,
+	"companyId" : 1124,
+	"optinType" : 3,
+	"optinStatus" : 1003,
+	"isActive" : true,
+	"allowedDistance" : 0,
+	"createdBy" : "ravi_test",
+	"creationDate" : ISODate("2021-11-30T14:56:08.339Z"),
+	"lastModifiedDate" : ISODate("2021-11-30T14:56:08.761Z"),
+	"isOnDemand" : true,
+	"spid" : "Airtel",
+	"optinMethod" : 106,
+	"optinTimestamp" : ISODate("2021-11-30T14:56:07.465Z"),
+	"optinId" : "1234567890$*ZUM*$WSdtZ1638284167477Z1124Z919561120895",
+	"serviceType" : 1,
+	"registeredWithTelenity" : false,
+	"mcc" : 404,
+	"mnc" : 90,
+	"consentRefId" : "2Oaf6ygVa1TYIsspVv1hEiEk4/qfBg28KPQpqzudFprYTJnxm3up4hmAXUmrQelN"
+})
+
+
+##update:
+db.subscribers.update({"mdn" : 1234567890}, 
+    {$set:{"isActive" : false}}, 
+    { multi: false, upsert: false}
+)
+
+##Delete:
+db.subscribers.remove({"mdn" : 1234567890})
+db.subscribers.remove({})
+
+
+#Create
+db.student.create({id: 1})
+
+
+create database:
+use database_name
+
+use test
+
+Create collection:
+db.createCollection("test")
+
+db.test.insert({name:"Ravi", email:"ravi@gmail.com"})
+
+ db.createCollection("test")
+{ "ok" : 1 }
+
+ db.test.insert({name: "Ravi", email: "ravi@email.com"})
+WriteResult({ "nInserted" : 1 })
+
+
+ db.test.find().pretty()
+{
+	"_id" : ObjectId("627942c8a071563c83a8f0a9"),
+	"name" : "Ravi",
+	"email" : "ravi@email.com"
+}
